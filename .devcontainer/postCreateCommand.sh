@@ -20,7 +20,7 @@ LOCALE="en_GB"
 # WordPress Core install
 wp core download --locale=$LOCALE --path=wordpress
 cd wordpress
-wp config create --dbname=$(MYSQL_DATABASE) --dbuser=$(MYSQL_USER) --dbpass=$(MYSQL_PASSWORD) --dbhost=$(MYSQL_HOST)
+wp config create --dbname=$(MYSQL_DATABASE) --dbuser=$(MYSQL_USER) --dbpass=$(MYSQL_USER_PASSWORD) --dbhost=$(MYSQL_HOST)
 LINE_NUMBER=`grep -n -o 'stop editing!' wp-config.php | cut -d ':' -f 1`
 sed -i "${LINE_NUMBER}r ../.devcontainer/wp-config-addendum.txt" wp-config.php && sed -i -e "s/CODESPACE_NAME/$CODESPACE_NAME/g"  wp-config.php
 wp core install --url=https://$(CODESPACE_NAME) --title=$(WORDPRESS_TITLE) --admin_user=$(WORDPRESS_USER) --admin_password=$(WORDPRESS_PASSWORD)--admin_email=$(GIT_COMMITTER_EMAIL)
