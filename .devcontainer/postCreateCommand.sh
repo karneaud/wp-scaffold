@@ -25,6 +25,9 @@ LINE_NUMBER=`grep -n -o 'stop editing!' wp-config.php | cut -d ':' -f 1`
 sed -i "${LINE_NUMBER}r ../.devcontainer/wp-config-addendum.txt" wp-config.php && sed -i -e "s/CODESPACE_NAME/$CODESPACE_NAME/g"  wp-config.php
 wp core install --url=https://$(CODESPACE_NAME) --title=$(WORDPRESS_TITLE) --admin_user=$(WORDPRESS_USER) --admin_password=$(WORDPRESS_USER_PASSWORD)--admin_email=$(GIT_COMMITTER_EMAIL)
 
+# Install some essential WP plugins
+wp plugin install query-monitor --activate
+
 # Demo content for WordPress
 wp plugin install wordpress-importer --activate
 curl https://raw.githubusercontent.com/WPTT/theme-unit-test/master/themeunittestdata.wordpress.xml > demo-content.xml
@@ -45,10 +48,6 @@ if [ ! -L "$REPO_FOLDER/src" ]; then
   ln -s "$(pwd)/$REPO_FOLDER/src" "$SYMLINK_FOLDER"
 fi
 echo "Setup completed successfully!"
-
-# Install some essential WP plugins
-wp plugin install query-monitor wp-mail-smtp
-wp plugin activate query-mnoitor wp-mail-smtp
 
 # Setup bash
 echo export PATH=\"\$PATH:$REPO_FOLDER/src/vendor/bin\" >> ~/.bashrc
