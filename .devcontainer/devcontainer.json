@@ -40,7 +40,7 @@
 		3306
 	],
 
-	"postCreateCommand": "echo \"Wordpress Host: ${WORDPRESS_HOST} / ${localEnv:MYSQL_USER}\" & bash ./.devcontainer/postCreateCommand.sh > .devcontainer/postCreateCommand.log",
+	"postCreateCommand": "echo \"Wordpress Host: $WORDPRESS_HOST / \" & bash ./.devcontainer/postCreateCommand.sh > .devcontainer/postCreateCommand.log",
 	
 	"portsAttributes": {
 		"3306": {
