@@ -23,5 +23,23 @@
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
         "phpcompatibility/phpcompatibility-wp": "*",
         "wp-coding-standards/wpcs": "^2.3"
+    },
+    "scripts":{
+       "create-archive":[
+            "zip -x \"*.git*\" -x \"*.scss\" -x \"bin/*\" -x \"*.xml\" -x \"**/composer.*\" -x \"*.yml\" -x \"*Test*\" -x \"**/tests/*\" -x \"gulpfile.js\" -x \"scss/*\""
+        ],
+        "install-plugin":[
+            "wp plugin install --path=$(REPO_FOLDER)/wordpress"
+        ],
+        "activate-plugin":[
+            "wp plugin activate --path=$(REPO_FOLDER)/wordpress"
+        ],
+        "install-wp-test":[
+            "wp scaffold plugin-tests $(PLUGIN_NAME) --path=$(REPO_FOLDER)/wordpress",
+            "bin/install-wp-tests.sh wordpress_test $(MYSQL_USER) $(MYSQL_USER_PASSWORD) $(MYSQL_HOST) latest"
+        ],
+        "tests": [
+            "phpunit"
+        ]
     }
 }
