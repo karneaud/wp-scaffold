@@ -1,6 +1,6 @@
 #! /bin/bash
 REPO_FOLDER="/workspaces/$RepositoryName"
-SYMLNK_FOLDER="$REPO_FOLDER/wordpress/wp-content/plugins/$PLUGIN_NAME"
+SYMLINK_FOLDER="$REPO_FOLDER/wordpress/wp-content/plugins/$PLUGIN_NAME"
 
 # Create Wordpress Folder
 # Check if the "./wordpress" directory exists
@@ -18,12 +18,13 @@ service apache2 start
 LOCALE="en_GB"
 
 # WordPress Core install
+echo "Setup $WORDPRESS_TITLE"
 wp core download --locale=$LOCALE --path=wordpress
 cd wordpress
-wp config create --dbname=$(MYSQL_DATABASE) --dbuser=$(MYSQL_USER) --dbpass=$(MYSQL_USER_PASSWORD) --dbhost=$(MYSQL_HOST)
-LINE_NUMBER=`grep -n -o 'stop editing!' wp-config.php | cut -d ':' -f 1`
+wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_USER_PASSWORD --dbhost=$MYSQL_HOST
+LINE_NUMBER=`grep -n -o 'Add any custom values between this line' wp-config.php | cut -d ':' -f 1`
 sed -i "${LINE_NUMBER}r ../.devcontainer/wp-config-addendum.txt" wp-config.php && sed -i -e "s/CODESPACE_NAME/$CODESPACE_NAME/g"  wp-config.php
-wp core install --url=https://$(CODESPACE_NAME) --title=$(WORDPRESS_TITLE) --admin_user=$(WORDPRESS_USER) --admin_password=$(WORDPRESS_USER_PASSWORD)--admin_email=$(GIT_COMMITTER_EMAIL)
+wp core install --url=https://$CODESPACE_NAME --title=$WORDPRESS_TITLE --admin_user=${WORDPRESS_USER:-$GITHUB_USER} --admin_password=$WORDPRESS_USER_PASSWORD --admin_email=$WORDPRESS_USER_EMAIL
 
 # Install some essential WP plugins
 wp plugin install query-monitor --activate
@@ -43,9 +44,9 @@ composer install
 
 # Setup local plugin
 # Create the symlink from "./src" to "./wordpress/wp-content/plugins/src"
-if [ ! -L "$REPO_FOLDER/src" ]; then
-  echo "Creating the symlink from $REPO_FOLDER/src to $SYMLINK_FOLDER..."
-  ln -s "$(pwd)/$REPO_FOLDER/src" "$SYMLINK_FOLDER"
+if [ ! -L "$SYMLINK_FOLDER" ]; then
+  echo "Creating the symlink from $REPO_FOLDER/src to $SYMLINK_FOLDER"
+  ln -s "$REPO_FOLDER/src" "$SYMLINK_FOLDER"
 fi
 echo "Setup completed successfully!"
 
