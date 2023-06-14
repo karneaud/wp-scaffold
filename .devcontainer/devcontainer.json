@@ -12,10 +12,10 @@
 		"MYSQL_USER_PASSWORD":"wordpress",
 		"MYSQL_DATABASE":"wordpress",
 		"MYSQL_HOST":"db",
-		"WORDPRESS_USER":"wordpress",
 		"WORDPRESS_USER_PASSWORD":"wordpress",
 		"WORDPRESS_TITLE":"Wordpress Codespace Environment",
-		"PLUGIN_NAME":"wordpress-codespaces"
+		"PLUGIN_NAME":"wordpress-codespaces",
+		"WORDPRESS_USER_EMAIL":"admin@wordpress-codespaces.local"
 	},
 	"customizations": {
 		"vscode": {		
@@ -40,7 +40,7 @@
 		3306
 	],
 
-	"postCreateCommand": "echo \"Wordpress Host: $WORDPRESS_HOST / \" & bash ./.devcontainer/postCreateCommand.sh > .devcontainer/postCreateCommand.log",
+	"postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh > .devcontainer/postCreateCommand.log",
 	
 	"portsAttributes": {
 		"3306": {
