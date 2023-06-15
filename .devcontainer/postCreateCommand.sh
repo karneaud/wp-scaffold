@@ -25,7 +25,7 @@ if [  ! -f "./wordpress/wp-config.php" ]; then
   echo "Create wp-config.php"
   wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_USER_PASSWORD --dbhost=$MYSQL_HOST --path=./wordpress
   LINE_NUMBER=`grep -n -o 'Add any custom values between this line' ./wordpress/wp-config.php | cut -d ':' -f 1`
-  sed -i "${LINE_NUMBER}r ../.devcontainer/wp-config-addendum.txt" ./wordpress/wp-config.php && sed -i -e "s/CODESPACE_NAME/$CODESPACE_NAME/g"  ./wordpress/wp-config.php
+  sed -i "${LINE_NUMBER}r ./.devcontainer/wp-config-addendum.txt" ./wordpress/wp-config.php && sed -i -e "s/CODESPACE_NAME/$CODESPACE_NAME/g"  ./wordpress/wp-config.php
   echo "Install with user ${WORDPRESS_USER:-$GITHUB_USER}"
   wp core install --url="https://$CODESPACE_NAME-80.preview.app.github.dev/" --title="$WORDPRESS_TITLE" --admin_user=${WORDPRESS_USER:-$GITHUB_USER} --admin_password=$WORDPRESS_USER_PASSWORD --admin_email=$WORDPRESS_USER_EMAIL --path=./wordpress
   # Install some essential WP plugins
