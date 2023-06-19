@@ -37,6 +37,8 @@ fi
 
 echo "Updating plugin files..."
 
+cd $FOLDER
+
 mv $DEFAULT_SLUG.php $SLUG.php
 
 cp $SLUG.php $SLUG.tmp
@@ -59,8 +61,8 @@ cp readme.txt readme.tmp
 sed "s/$DEFAULT_NAME/$NAME/g" readme.tmp > readme.txt
 rm readme.tmp
 
-
 cd lang
+
 mv $DEFAULT_SLUG.pot $SLUG.pot
 
 cp $SLUG.pot $SLUG.tmp
@@ -95,7 +97,6 @@ cp class-$SLUG.php class-$SLUG.tmp
 sed "s/$DEFAULT_SLUG/$SLUG/g" class-$SLUG.tmp > class-$SLUG.php
 rm class-$SLUG.tmp
 
-
 mv class-$DEFAULT_SLUG-settings.php class-$SLUG-settings.php
 
 cp class-$SLUG-settings.php class-$SLUG-settings.tmp
@@ -109,7 +110,6 @@ rm class-$SLUG-settings.tmp
 cp class-$SLUG-settings.php class-$SLUG-settings.tmp
 sed "s/$DEFAULT_SLUG/$SLUG/g" class-$SLUG-settings.tmp > class-$SLUG-settings.php
 rm class-$SLUG-settings.tmp
-
 
 cd lib
 mv class-$DEFAULT_SLUG-post-type.php class-$SLUG-post-type.php
@@ -159,6 +159,7 @@ rm class-$SLUG-admin-api.tmp
 
 if [ "$NEWREPO" == "y" ]; then
 	echo "Initialising new git repo..."
+	cd ../../
 	git init
 fi
 
