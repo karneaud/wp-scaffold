@@ -25,8 +25,6 @@ git clone https://github.com/hlashbrooke/$DEFAULT_SLUG.git $FOLDER
 
 echo "Removing git files..."
 
-cd $FOLDER
-
 rm -rf .git
 rm README.md
 rm build-plugin.sh
@@ -161,7 +159,6 @@ rm class-$SLUG-admin-api.tmp
 
 if [ "$NEWREPO" == "y" ]; then
 	echo "Initialising new git repo..."
-	cd ../..
 	git init
 fi
 
