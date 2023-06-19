@@ -1,6 +1,7 @@
 {
     "name": "codeispoetry/wp-codepsace",
     "description": "codespace for developing WordPress",
+    "type":"wordpress-plugin",
     "extra": {
         "installer-paths": {
           "wordpress/wp-content/plugins/{$name}/": [
@@ -40,9 +41,12 @@
             "wp scaffold plugin-tests $PLUGIN_NAME --path=wordpress --dir=./",
             "bin/install-wp-tests.sh wordpress_test root $MYSQL_USER_PASSWORD $MYSQL_HOST latest"
         ],
-        "scaffold-plugin": [
+        "scaffold-wp-plugin": [
             "wp scaffold plugin $PLUGIN_NAME --path=wordpress --prompt"
         ],
+        "scaffold-hlashbrooke-plugin":[
+            "bash bin/scaffold-hlashbrooke-plugin.sh"
+        ]
         "tests": [
             "phpunit"
         ]
