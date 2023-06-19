@@ -1,5 +1,5 @@
 {
-    "name": "codeispoetry/wp-scaffold",
+    "name": "karneaud/wp-scaffold",
     "description": "scaffold for developing a WordPress plugin",
     "type":"wordpress-plugin",
     "extra": {
@@ -46,7 +46,7 @@
         ],
         "scaffold-hlashbrooke-plugin":[
             "bash bin/scaffold-hlashbrooke-plugin.sh"
-        ]
+        ],
         "tests": [
             "phpunit"
         ]
