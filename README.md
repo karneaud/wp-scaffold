@@ -20,3 +20,4 @@ This setup can/will create and configure the following things automatically:
 * Make considerations for themes
 * Add more boilerplates
 * Better way to install boilerplates??
+* Publish to wordpress SVN
