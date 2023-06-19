@@ -17,7 +17,7 @@
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
         },
-        "vendor-dir":"src/vendor"
+        "vendor-dir":"{$name}/vendor"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.7.1",
@@ -28,6 +28,9 @@
         "yoast/phpunit-polyfills": "^2.0"
     },
     "scripts":{
+       "install-wp-cli":[
+           "curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp"
+       ],
        "create-archive":[
             "zip -x \"*.git*\" -x \"*.scss\" -x \"bin/*\" -x \"*.xml\" -x \"**/composer.*\" -x \"*.yml\" -x \"*Test*\" -x \"**/tests/*\" -x \"gulpfile.js\" -x \"scss/*\""
         ],
