@@ -4,7 +4,7 @@ This is a scaffold for creating a plugin for WordPress (https://wordpress.org). 
 
 ## Installation
 * Clone the repo into a root 
-* Create the necessary env variables for the project
+* Create the necessary env variables for the project (maybe via `composer config --json extra` ?)
 * Configure using `composer` 
 
 ## Behind the scenes
