@@ -4,10 +4,10 @@
     "type":"wordpress-plugin",
     "extra": {
         "installer-paths": {
-          "wordpress/wp-content/plugins/{$name}/": [
+          "$WP_PATH/wp-content/plugins/{$name}/": [
             "type:wordpress-plugin"
           ],
-          "wordpress/wp-content/themes/{$name}/": [
+          "$WP_PATH/wp-content/themes/{$name}/": [
             "type:wordpress-theme"
           ]
         }
