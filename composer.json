@@ -4,21 +4,24 @@
     "type":"wordpress-plugin",
     "extra": {
         "installer-paths": {
-          "$WP_PATH/wp-content/plugins/{$name}/": [
+          "${WP_PATH}/wp-content/plugins/{$name}/": [
             "type:wordpress-plugin"
           ],
-          "$WP_PATH/wp-content/themes/{$name}/": [
+          "${WP_PATH}/wp-content/themes/{$name}/": [
             "type:wordpress-theme"
           ]
-        }
+        },
+        "name": "wp-scaffold",
+        "WP_PATH": "www/"
     },
     "config": {
         "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
         },
-        "vendor-dir":"{$name}/vendor"
+        "vendor-dir":"$name/vendor"
     },
+    
     "require-dev": {
         "squizlabs/php_codesniffer": "3.7.1",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
@@ -41,11 +44,11 @@
             "wp plugin activate"
         ],
         "install-wp-test":[
-            "wp scaffold plugin-tests {$name}",
+            "wp scaffold plugin-tests $name",
             "bin/install-wp-tests.sh wordpress_test root $MYSQL_USER_PASSWORD $MYSQL_HOST latest"
         ],
         "scaffold-wp-plugin": [
-            "wp scaffold plugin {$name} --prompt"
+            "wp scaffold plugin $name --prompt"
         ],
         "scaffold-hlashbrooke-plugin":[
             "bash bin/scaffold-hlashbrooke-plugin.sh"
