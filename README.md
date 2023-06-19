@@ -3,7 +3,7 @@
 This is a scaffold for creating a plugin for WordPress (https://wordpress.org). I wanted to restructure the project to keep the development files away from the source file for easier production compiling. The scaffold would create files from either `wp scaffold plugin` or @hlashbrooke proposed template 
 
 ## Installation
-* Clone the repo into a root 
+* Clone the repo
 * Create the necessary env variables for the project (maybe via `composer config --json extra` ?)
 * Configure using `composer` 
 
